@@ -7,28 +7,27 @@ import java.util.Optional;
 
 import com.formation.velo.api.OpenDataVeloNantes;
 import com.formation.velo.api.data.OpenDataVeloNante;
+import com.formation.velo.model.User;
+import com.formation.velo.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import com.formation.velo.model.Person;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Controller
 @RequestMapping("/api")
-public class PersonController {
+public class UserController {
 	
+	private UserRepository userRepository;
 	
-	
-	@GetMapping("persons")
-	public ResponseEntity<List<Person>> getAll(){
-		List<Person> persons = findAllPersons();
+	@GetMapping("users")
+	public ResponseEntity<List<User>> getAll(){
+		List<User> users = userRepository.findAll();
 		
-		return ResponseEntity.ok(persons);
+		return ResponseEntity.ok(users);
 	}
 
 	@GetMapping("velos")
@@ -50,35 +49,32 @@ public class PersonController {
 		}
 	}
 
-	@GetMapping("persons/{id}")
-	public ResponseEntity<Optional<Person>> getPersoneById(@PathVariable Integer id){
-		Optional<Person> persons = findAllPersons().stream().filter(t -> t.getId().equals(id)).findFirst();
+	@GetMapping("users/{id}")
+	public ResponseEntity<Optional<User>> getPersoneById(@PathVariable Integer id){
+		Optional<User> user = userRepository.findById(id);
 		
-		return ResponseEntity.ok(persons);
+		return ResponseEntity.ok(user);
+	}
+
+	@PostMapping("users/add")
+	public ResponseEntity<User> add(@RequestParam String name,@RequestParam String surname){
+		User user = User.builder().name(name).surname(surname).build();
+		return ResponseEntity.ok(userRepository.save(user));
+	}
+
+	@DeleteMapping("users/delete")
+	public ResponseEntity<String> delete(@RequestParam Integer id){
+		userRepository.deleteById(id);
+		return ResponseEntity.ok("deleted");
+	}
+
+	@PostMapping("users/update")
+	public ResponseEntity<String> delete(@RequestBody User user){
+		userRepository.save(user);
+		return ResponseEntity.ok("updated");
 	}
 
 
-
-	public List<Person> findAllPersons() {
-		List<Person> persons = new ArrayList<>();
-		Person p1 = new Person();
-		p1.setId(1);
-		p1.setName("Dupont");
-		p1.setSurname("Jean");
-		persons.add(p1);
-		
-		Person p2 = new Person();
-		p2.setId(1);
-		p2.setName("Couton");
-		p2.setSurname("Marie");
-		persons.add(p2);
-		
-		Person p3 = new Person();
-		p3.setId(1);
-		p3.setName("Same");
-		p3.setSurname("Jean-marie");
-		persons.add(p3);
-		return persons;
-	}
+	
 
 }
