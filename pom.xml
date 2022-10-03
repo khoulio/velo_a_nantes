@@ -231,14 +231,6 @@
 				<activatedProperties>h2</activatedProperties>
 			</properties>
 		</profile>
-		<profile>
-			<id>postgres</id>
-			<properties>
-				<initializationMode>never</initializationMode>
-				<activatedProperties>postgres</activatedProperties>
-			</properties>
-
-		</profile>
 
 
 	</profiles>
