@@ -1,9 +1,5 @@
 package com.formation.velo.controllers;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-
 import com.formation.velo.api.OpenDataVeloNantes;
 import com.formation.velo.api.data.OpenDataVeloNante;
 import com.formation.velo.model.User;
@@ -13,12 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api")

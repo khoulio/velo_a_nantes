@@ -1,6 +1,5 @@
 package com.formation.velo.api.data;
 
-import java.time.OffsetDateTime;
 import java.util.Date;
 
 @lombok.Data
