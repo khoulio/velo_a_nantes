@@ -212,9 +212,7 @@
 				<activatedProperties>mysql</activatedProperties>
 				<initializationMode>NEVER</initializationMode>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+
 
 		</profile>
 		<profile>
@@ -230,6 +228,9 @@
 				<initializationMode>never</initializationMode>
 				<activatedProperties>h2</activatedProperties>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 
 
