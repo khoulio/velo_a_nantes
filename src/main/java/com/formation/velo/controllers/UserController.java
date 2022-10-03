@@ -123,11 +123,11 @@ public class UserController {
 								Model model) {
 		if (result.hasErrors()) {
 			user.setId(id);
-			return "redirect:list";
+			return "index";
 		}
 
 		userService.save(user);
-		model.addAttribute("user", userService.findAll());
+		model.addAttribute("users", userService.findAll());
 		return "index";
 	}
 	@GetMapping("users/delete/{id}")
@@ -143,6 +143,8 @@ public class UserController {
 	public String showSignUpForm(User user) {
 		return "add-user";
 	}
+
+
 
 
 
