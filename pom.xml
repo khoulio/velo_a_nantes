@@ -228,6 +228,13 @@
 				<initializationMode>never</initializationMode>
 				<activatedProperties>h2</activatedProperties>
 			</properties>
+		</profile>
+		<profile>
+			<id>heroku</id>
+			<properties>
+				<initializationMode>never</initializationMode>
+				<activatedProperties>heroku</activatedProperties>
+			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
