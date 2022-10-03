@@ -205,4 +205,41 @@
 	</build>
 
 
+	<profiles>
+		<profile>
+			<id>mysql</id>
+			<properties>
+				<activatedProperties>mysql</activatedProperties>
+				<initializationMode>NEVER</initializationMode>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+		</profile>
+		<profile>
+			<id>postgres</id>
+			<properties>
+				<activatedProperties>postgres</activatedProperties>
+				<initializationMode>NEVER</initializationMode>
+			</properties>
+		</profile>
+		<profile>
+			<id>h2</id>
+			<properties>
+				<initializationMode>never</initializationMode>
+				<activatedProperties>h2</activatedProperties>
+			</properties>
+		</profile>
+		<profile>
+			<id>postgres</id>
+			<properties>
+				<initializationMode>never</initializationMode>
+				<activatedProperties>postgres</activatedProperties>
+			</properties>
+
+		</profile>
+
+
+	</profiles>
 </project>

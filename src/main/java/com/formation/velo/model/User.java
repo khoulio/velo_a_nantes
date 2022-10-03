@@ -3,6 +3,7 @@ package com.formation.velo.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Builder
@@ -20,7 +21,9 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotBlank(message = "name is mandatory")
 	private String name;
+	@NotBlank(message = "Surname is mandatory")
 	private String surname;
 
 }

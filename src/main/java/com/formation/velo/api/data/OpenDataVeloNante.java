@@ -5,5 +5,5 @@ public class OpenDataVeloNante {
     private long nhits;
     private Parameters parameters;
     private Record[] records;
-    private FacetGroup[] facetGroups;
+    private String[] facetGroups;
 }
