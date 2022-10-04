@@ -80,17 +80,6 @@ public class VeloApplicationTI {
 
     }
 
-    @Test
-    public void getAllVeloAPI() throws Exception
-    {
-        mockMvc.perform( MockMvcRequestBuilders
-                        .get("/api/velos")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nhits").exists())
-                .andExpect(jsonPath("$.nhits", Matchers.is(127)));
-    }
 
     @Test
     public void getAllUsersAPI() throws Exception
@@ -163,7 +152,7 @@ public class VeloApplicationTI {
     }
 
     @Test
-    public void getDeleteObjectUsersAPI() throws Exception
+    public void getDeleteObjectUsersAPI()
     {
         User user1 = User.builder().surname("Julie").name("Dupont").build();
         User user2 = User.builder().surname("Marie").name("Dalle").build();
@@ -176,7 +165,9 @@ public class VeloApplicationTI {
         assertEquals(4, people.size());
 
         userService.delete(user1);
-        assertEquals(3, people.size());
+        userService.delete(user2);
+        List<User> peopleAfterDelete = userService.findAll();
+        assertEquals(2, peopleAfterDelete.size());
     }
 
 }
