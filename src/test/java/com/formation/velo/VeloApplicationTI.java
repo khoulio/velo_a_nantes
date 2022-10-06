@@ -167,16 +167,18 @@ public class VeloApplicationTI {
     {
         User user1 = User.builder().surname("Julie").name("Dupont").build();
         User user2 = User.builder().surname("Marie").name("Dalle").build();
-        userService.save(user1);
-        userService.save(user2);
+        user1 = userService.save(user1);
+        user2 = userService.save(user2);
 
 
         List<User> people = userService.findAll();
         assertNotNull(people);
         assertEquals(4, people.size());
 
-        userService.delete(user1);
-        assertEquals(3, people.size());
+        userService.deleteById(user1.getId());
+        userService.delete(user2);
+        people = userService.findAll();
+        assertEquals(2, people.size());
     }
 
 }
