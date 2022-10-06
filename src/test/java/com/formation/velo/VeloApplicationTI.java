@@ -59,8 +59,8 @@ public class VeloApplicationTI {
         //Given
         User user1 = User.builder().surname("Julie").name("Dupont").build();
         User user2 = User.builder().surname("Marie").name("Dalle").build();
-        userService.save(user1);
-        userService.save(user2);
+        var users  = List.of(user1,user2);
+        userService.saveAll(users);
 
 
         List<User> people = userService.findAll();

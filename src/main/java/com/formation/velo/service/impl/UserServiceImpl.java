@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService {
     public void delete(User user) {
         userRepository.delete(user);
     }
+
+    @Override
+    public void saveAll(List<User> users) {
+        userRepository.saveAll(users);
+    }
 }

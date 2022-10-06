@@ -14,4 +14,6 @@ public interface UserService {
     void deleteById(Integer id);
 
     void delete(User user);
+
+    void saveAll(List<User> users);
 }
