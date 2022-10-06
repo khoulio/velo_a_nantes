@@ -19,14 +19,6 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = -767070904974486420L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@NotBlank(message = "name is mandatory")
-	private String name;
-	@NotBlank(message = "Surname is mandatory")
-	private String surname;
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -39,4 +31,13 @@ public class User implements Serializable {
 	public int hashCode() {
 		return Objects.hash(id, name, surname);
 	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@NotBlank(message = "name is mandatory")
+	private String name;
+	@NotBlank(message = "Surname is mandatory")
+	private String surname;
+
 }
