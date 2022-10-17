@@ -1,7 +1,9 @@
 package com.formation.velo;
 
 import com.formation.velo.controllers.UserController;
+import com.formation.velo.model.Station;
 import com.formation.velo.model.User;
+import com.formation.velo.service.StationService;
 import com.formation.velo.service.UserService;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -41,6 +43,10 @@ public class VeloApplicationTI {
 
     @Autowired
     private  UserService userService;
+
+
+    @Autowired
+    private StationService stationService;
 
 
     private MockMvc mockMvc;
@@ -168,6 +174,17 @@ public class VeloApplicationTI {
         userService.delete(user2);
         List<User> peopleAfterDelete = userService.findAll();
         assertEquals(2, peopleAfterDelete.size());
+    }
+
+    @Test
+    public void save_get_station_return_station_succes(){
+        Station station = Station.builder().recordId("id").name("test Station").build();
+        stationService.save(station);
+
+        Optional<Station> optionalStation = stationService.findByRecordId("id");
+        assertNotNull(optionalStation);
+        assertEquals("test Station", optionalStation.get().getName());
+
     }
 
 }

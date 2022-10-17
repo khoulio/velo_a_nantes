@@ -14,4 +14,8 @@ public interface StationService {
     void deleteById(Integer id);
 
     void delete(Station station);
+
+    void saveRecords();
+
+    Optional<Station> findByRecordId(String recordId);
 }

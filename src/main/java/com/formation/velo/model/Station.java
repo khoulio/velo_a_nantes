@@ -18,17 +18,19 @@ public class Station implements Serializable {
 	private static final long serialVersionUID = -767070904974486420L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	private String name;
 	private String status;
-	private String recordid;
-	private double lattitude;
+	private String recordId;
+	//index 0 latitude  , index 1 long
+	private double latitude;
 	private double longitude;
-	private int bike_stands;
-	private int available_bikes;
-	private int available_bike_stands;
+	private int bikeStands;
+	private String address;
+	private int availableBikes;
+	private int availableBikeStands;
 
 
 
