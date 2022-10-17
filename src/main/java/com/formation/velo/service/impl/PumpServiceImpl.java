@@ -73,15 +73,17 @@ public class PumpServiceImpl implements PumpService {
                 if(pumpToUpdate.isPresent()){
                     // on update la pump
 
-
+                    final Pump pump = pumpToUpdate.get();
+                    generatePumpByRecord(record, pump);
                     // on save
-                    save(pumpToUpdate.get());
+                    save(pump);
                 }else {
                     // on crée la pump
                     Pump newPump = Pump.builder()
                             .recordId(record.getRecordId())
                             .build();
                     // on save
+                    generatePumpByRecord(record, newPump);
 
                     save(newPump);
                 }
@@ -98,6 +100,31 @@ public class PumpServiceImpl implements PumpService {
 
 
 
+    }
+
+    private void generatePumpByRecord(com.formation.velo.api.Record record, Pump pump) {
+        pump.setPumpId(record.getField().getPumpId());
+        pump.setAdresse(record.getField().getAdresse());
+        pump.setComArmCode(record.getField().getComArmCode());
+        pump.setComCode(record.getField().getComCode());
+        pump.setComName(record.getField().getComName());
+        pump.setCp(record.getField().getCp());
+        pump.setDepCode(record.getField().getDepCode());
+        pump.setEpciCode(record.getField().getEpciCode());
+        pump.setDepName(record.getField().getDepName());
+        pump.setEpciName(record.getField().getEpciName());
+        pump.setHorairesAutomate24_24(record.getField().getHorairesAutomate24_24());
+        pump.setLatitude(record.getField().getGeom()[1]);
+        pump.setLongitude(record.getField().getGeom()[0]);
+        pump.setPop(record.getField().getPop());
+        pump.setPrixId(record.getField().getPrixId());
+        pump.setPrixMaj(record.getField().getPrixMaj());
+        pump.setPrixNom(record.getField().getPrixNom());
+        pump.setPrixValeur(record.getField().getPrixValeur());
+        pump.setServicesService(record.getField().getServicesService());
+        pump.setRegCode(record.getField().getRegCode());
+        pump.setRecordId(record.getRecordId());
+        pump.setRegName(record.getField().getRegName());
     }
 
     @Override
