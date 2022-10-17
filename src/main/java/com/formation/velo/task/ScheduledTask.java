@@ -18,10 +18,11 @@ public class ScheduledTask {
         this.pumpService = pumpService;
     }
 
-    @Scheduled(fixedRate = 60000) // 1 min
+    @Scheduled(fixedRate = 600000) // 1 min
     public void searchNextMatchByCompetition() {
-        log.info("🔄 update stations");
+        log.info("🔄 update Stations");
         stationService.saveRecords();
+        log.info("🔄 update Pumps");
         pumpService.saveRecords();
     }
 }

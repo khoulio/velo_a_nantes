@@ -1,6 +1,7 @@
 package com.formation.velo.service.impl;
 
 import com.formation.velo.api.OpenData;
+import com.formation.velo.api.Record;
 import com.formation.velo.api.client.OpenDataNantesClient;
 import com.formation.velo.api.client.OpenDataPumpClient;
 import com.formation.velo.model.Pump;
@@ -73,9 +74,10 @@ public class PumpServiceImpl implements PumpService {
                 if(pumpToUpdate.isPresent()){
                     // on update la pump
 
-                    final Pump pump = pumpToUpdate.get();
+                    Pump pump = pumpToUpdate.get();
                     generatePumpByRecord(record, pump);
                     // on save
+                    log.info("🥶 update new"+pump);
                     save(pump);
                 }else {
                     // on crée la pump
@@ -85,6 +87,7 @@ public class PumpServiceImpl implements PumpService {
                     // on save
                     generatePumpByRecord(record, newPump);
 
+                    log.info("😀 inserting new"+newPump);
                     save(newPump);
                 }
             });
@@ -102,7 +105,7 @@ public class PumpServiceImpl implements PumpService {
 
     }
 
-    private void generatePumpByRecord(com.formation.velo.api.Record record, Pump pump) {
+    private void generatePumpByRecord(Record record, Pump pump) {
         pump.setPumpId(record.getField().getPumpId());
         pump.setAdresse(record.getField().getAdresse());
         pump.setComArmCode(record.getField().getComArmCode());
